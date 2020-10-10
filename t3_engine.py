@@ -4,6 +4,9 @@ class Board:
         self.dimensions = dimensions
         self.board = self.generate_new_board(string_representation)
 
+    def get_board_data(self):
+        return self.board
+
     def generate_new_board(self, string_board=None):
         if string_board:
             return [[string_board[x + i] for x in range(self.dimensions)] for i in range(self.dimensions)]
