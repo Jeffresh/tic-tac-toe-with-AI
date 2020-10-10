@@ -38,10 +38,10 @@ class Board:
             return None
 
     def __str__(self):
-        print_board = '-' * 9 + '\n'
+        print_board = '-' * (self.dimensions ** 2) + '\n'
         for i in range(3):
             print_board += '| ' + ' '.join(self.board[i]) + ' |\n'
-        print_board += '-' * 9
+        print_board += '-' * (self.dimensions ** 2)
 
         return print_board
 
