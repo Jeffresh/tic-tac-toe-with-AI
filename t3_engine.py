@@ -78,8 +78,9 @@ class T3Engine:
     def do_move(self, player):
         pass
 
-    def player_move(self):
-        pass
+    def player_move(self, user_input, player_symbol):
+        move_result = self.board.update_board(user_input, player_symbol)
+        return move_result
 
     def cpu_move(self):
         pass
