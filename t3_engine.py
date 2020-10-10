@@ -9,9 +9,9 @@ class Board:
 
     def generate_new_board(self, string_board=None):
         if string_board:
-            return [[string_board[x + i] for x in range(self.dimensions)] for i in range(self.dimensions)]
+            return [[string_board[x + (3 * i)] for x in range(self.dimensions)] for i in range(self.dimensions)]
         else:
-            return [[' ', ' ', ' '] for _ in range(self.dimensions)]
+            return [[' ' for _ in range(self.dimensions)] for _ in range(self.dimensions)]
 
     def update_board(self, first_value, second_value, player):
         coord_i, coord_j = second_value - 1, first_value - 1
