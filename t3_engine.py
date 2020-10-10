@@ -47,15 +47,33 @@ class Board:
 
 
 class T3Engine:
-    def play(self):
+
+    def __init__(self):
+        self.board = None
+
+    def start(self):
         string_board = input('Enter cells: ')
         self.create_board(string_board)
 
-    def create_board(self, string_representation):
-        pass
+    def evaluate_board(self, player):
+        rows = self.board.get_board_data()
+        player = 'X' if player == 1 else 'O'
 
-    def evaluate_board(self):
-        pass
+        x_number = sum(l.count('X') for l in rows)
+        o_number = sum(l.count('O') for l in rows)
+        game_state = {}
+
+        if self.won(player, rows):
+            game_state['not_finished'] = False
+            game_state['game_result'] = '{} wins'.format(player)
+        elif x_number + o_number != 9:
+            game_state['not_finished'] = True
+            game_state['game_result'] = 'Game not finished'
+        else:
+            game_state['not_finished'] = False
+            game_state['game_result'] = 'Draw'
+
+        return game_state
 
     def do_move(self, player):
         pass
