@@ -24,12 +24,15 @@ class Board:
             self.board[coord_i][coord_j] = player
             return {'updated': True, 'action': self.board}
 
-    def check_coordinates(self, coord_i, coord_j):
-        if type(coord_i) != int or coord_j != int:
+    def check_coordinates(self, user_input):
+        try:
+            coord_j, coord_i = map(int, user_input.split())
+        except (UnboundLocalError, ValueError):
             return 'You should enter numbers!'
-        elif coord_i >= len(self.board) or coord_j >= len(self.board[0]):
+        if coord_i > len(self.board) or coord_j > len(self.board[0]):
             return 'Coordinates should be from 1 to 3!'
-        elif self.board[coord_j][coord_j] != '_' or self.board[coord_j][coord_j]:
+        elif self.board[3 - coord_i][coord_j - 1] != '_' and self.board[3 - coord_i][coord_j - 1] != ' ':
+            print(3-coord_i, coord_j - 1)
             return 'This cell is occupied! Choose another one!'
         else:
             return None
