@@ -55,6 +55,8 @@ class T3Engine:
         string_board = input('Enter cells: ')
         self.create_board(string_board)
 
+    def create_board(self, string_board):
+        self.board = Board(string_representation=string_board)
     def evaluate_board(self, player):
         rows = self.board.get_board_data()
         player = 'X' if player == 1 else 'O'
