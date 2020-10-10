@@ -72,6 +72,13 @@ class T3Engine:
 
     def create_board(self, string_board):
         self.board = Board(string_representation=string_board)
+
+    def won(self, player, rows):
+        return (any(all([True if rows[i][j] == player else False for j in range(3)]) for i in range(3))
+                or any(all([True if rows[j][i] == player else False for j in range(3)]) for i in range(3))
+                or all(True if rows[i][i] == player else False for i in range(3))
+                or all(True if rows[2 - i][i] == player else False for i in range(3)))
+
     def evaluate_board(self, player):
         rows = self.board.get_board_data()
         player = 'X' if player == 1 else 'O'
