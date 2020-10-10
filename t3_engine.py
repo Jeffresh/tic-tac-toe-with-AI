@@ -13,15 +13,16 @@ class Board:
         else:
             return [[' ' for _ in range(self.dimensions)] for _ in range(self.dimensions)]
 
-    def update_board(self, first_value, second_value, player):
-        coord_i, coord_j = second_value - 1, first_value - 1
-        move_evaluation = self.check_coordinates(coord_i, coord_j)
+    def update_board(self, user_input, player):
+        move_evaluation = self.check_coordinates(user_input)
 
         if move_evaluation:
-            return False, move_evaluation
+            return {'updated': False, 'action': move_evaluation}
         else:
-            self.board[second_value - 1][first_value - 1] = player
-            return True, self.board
+            first_value, second_value = map(int, user_input.split())
+            coord_i, coord_j = 3 - int(second_value), int(first_value) - 1
+            self.board[coord_i][coord_j] = player
+            return {'updated': True, 'action': self.board}
 
     def check_coordinates(self, coord_i, coord_j):
         if type(coord_i) != int or coord_j != int:
