@@ -76,7 +76,9 @@ class T3Engine:
         return game_state
 
     def do_move(self, player):
-        pass
+        user_input = input('Enter the coordinates: ')
+        player_symbol = 'X' if player == 1 else 'O'
+        return self.player_move(user_input, player_symbol)
 
     def player_move(self, user_input, player_symbol):
         move_result = self.board.update_board(user_input, player_symbol)
