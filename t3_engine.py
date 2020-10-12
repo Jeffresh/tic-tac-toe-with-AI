@@ -1,3 +1,6 @@
+import random as rd
+
+
 class Board:
 
     def __init__(self, dimensions=3, string_representation=None):
@@ -57,7 +60,6 @@ class T3Engine:
         print(self.board)
         player = 2 if string_board.count('X') > string_board.count('O') else 1
 
-        game_state = self.evaluate_board(player)
         while game_state['not_finished']:
             allowed_move = self.do_move(player)
             while not allowed_move['updated']:
@@ -68,7 +70,6 @@ class T3Engine:
             print(self.board)
             player = player % 2 + 1
             print(game_state['game_result'])
-            game_state['not_finished'] = False
 
     def create_board(self, string_board):
         self.board = Board(string_representation=string_board)
