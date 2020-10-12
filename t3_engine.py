@@ -108,8 +108,29 @@ class T3Engine:
         move_result = self.board.update_board(user_input, player_symbol)
         return move_result
 
-    def cpu_move(self):
-        pass
+    def cpu_move(self, mode, player_symbol):
+        if mode == 'easy':
+            print('Making move level "{}"'.format(mode))
+            return self.run_easy_mode(player_symbol)
+
+    def run_easy_mode(self, player_symbol):
+        board_data = self.board.get_board_data()
+        free_row = []
+        free_column = []
+
+        for index, row in enumerate(board_data):
+            if ' ' or '_' in row[index]:
+                free_row.append(index)
+        random_row = free_row[rd.randint(0, len(free_row) - 1)]
+
+        for index, column in enumerate(board_data[random_row]):
+            if ' ' or '_' == column:
+                free_column.append(index)
+
+        random_column = free_column[rd.randint(0, len(free_column) - 1)]
+        self.board.board[random_row][random_column] = player_symbol
+
+        return {'updated': True, 'action': self.board}
 
 
 if __name__ == '__main__':
