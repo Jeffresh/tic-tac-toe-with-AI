@@ -54,8 +54,7 @@ class T3Engine:
         self.board = None
 
     def start(self):
-        string_board = input('Enter cells: ')
-        self.create_board(string_board)
+        self.create_board()
         print(self.board)
         player = 2 if string_board.count('X') > string_board.count('O') else 1
 
@@ -70,8 +69,8 @@ class T3Engine:
             player = player % 2 + 1
             print(game_state['game_result'])
 
-    def create_board(self, string_board):
-        self.board = Board(string_representation=string_board)
+    def create_board(self, dimensions=3, string_board=None):
+        self.board = Board(dimensions, string_representation=string_board)
 
     def won(self, player, rows):
         return (any(all([True if rows[i][j] == player else False for j in range(3)]) for i in range(3))
