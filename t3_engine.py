@@ -111,10 +111,7 @@ class T3Engine:
     def cpu_move(self):
         pass
 
-    def evaluate_move(self):
-        pass
-
 
 if __name__ == '__main__':
-    new_board = Board('_OOXX____')
-    print(new_board)
+    new_game = T3Engine()
+    new_game.start()
