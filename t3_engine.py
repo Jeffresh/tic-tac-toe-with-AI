@@ -56,9 +56,11 @@ class T3Engine:
     def start(self):
         self.create_board()
         print(self.board)
-        player = 2 if string_board.count('X') > string_board.count('O') else 1
+        player = 1
+        game_state = {'not_finished': True, 'game_result': None}
 
         while game_state['not_finished']:
+
             allowed_move = self.do_move(player)
             while not allowed_move['updated']:
                 print(allowed_move['action'])
@@ -101,7 +103,11 @@ class T3Engine:
     def do_move(self, player):
         user_input = input('Enter the coordinates: ')
         player_symbol = 'X' if player == 1 else 'O'
-        return self.player_move(user_input, player_symbol)
+        if player_symbol == 'X':
+            user_input = input('Enter the coordinates: ')
+            return self.player_move(user_input, player_symbol)
+        elif player_symbol == 'O':
+            return self.cpu_move('easy', player_symbol)
 
     def player_move(self, user_input, player_symbol):
         move_result = self.board.update_board(user_input, player_symbol)
