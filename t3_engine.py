@@ -35,7 +35,6 @@ class Board:
         if coord_i > len(self.board) or coord_j > len(self.board[0]):
             return 'Coordinates should be from 1 to 3!'
         elif self.board[3 - coord_i][coord_j - 1] != '_' and self.board[3 - coord_i][coord_j - 1] != ' ':
-            print(3-coord_i, coord_j - 1)
             return 'This cell is occupied! Choose another one!'
         else:
             return None
